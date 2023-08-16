@@ -1,0 +1,28 @@
+{
+  "name": "react-starter",
+  "version": "0.1.0",
+  "description": "A basic single page react app",
+  "scripts": {
+    "dev": "esbuild --define:window.IS_PRODUCTION=false ./src/index.jsx --outdir=www/dist --bundle --watch --servedir=www",
+    "prod": "npm run prod:build && npm run prod:serve",
+    "prod:build": "esbuild --define:window.IS_PRODUCTION=true ./src/index.jsx --outdir=www/dist --bundle --minify --sourcemap --sources-content=false --analyze",
+    "prod:serve": "esbuild --servedir=www",
+    "lint": "eslint ./src",
+    "format": "prettier ./src --check",
+    "fix": "prettier ./src --write && eslint ./src --fix"
+  },
+  "author": "samwato",
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.2",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.0.2"
+  }
+}
