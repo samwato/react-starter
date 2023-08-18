@@ -1,12 +1,17 @@
 import React from 'react'
-import { Section } from './components/layout/section'
+import { Route, RouterProvider } from './lib/router'
+import Home from './routes/home'
+import Dashboard from './routes/dashboard'
+import Reports from './routes/reports'
+import NotFound from './routes/not-found'
 
 export default function App() {
   return (
-    <div>
-      <Section>
-        <h1>Hi, from React</h1>
-      </Section>
-    </div>
+    <RouterProvider>
+      <Route path="/" component={<Home />} />
+      <Route path="/dashboard" component={<Dashboard />} />
+      <Route path="/reports" component={<Reports />} />
+      <Route fallback component={<NotFound />} />
+    </RouterProvider>
   )
 }

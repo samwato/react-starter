@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "description": "A basic single page react app",
   "scripts": {
-    "dev": "esbuild --define:window.IS_PRODUCTION=false ./src/index.jsx --outdir=www/dist --bundle --watch --servedir=www",
-    "prod": "npm run prod:build && npm run prod:serve",
-    "prod:build": "esbuild --define:window.IS_PRODUCTION=true ./src/index.jsx --outdir=www/dist --bundle --minify --sourcemap --sources-content=false --analyze",
-    "prod:serve": "esbuild --servedir=www",
+    "dev": "esbuild --define:window.IS_PRODUCTION=false ./src/index.jsx --outdir=www/dist --bundle --watch --servedir=www --serve-fallback=www/index.html",
+    "build": "esbuild --define:window.IS_PRODUCTION=true ./src/index.jsx --outdir=www/dist --bundle --minify --sourcemap --sources-content=false --analyze",
+    "serve": "esbuild --servedir=www --serve-fallback=www/index.html",
+    "prod": "npm run build && npm run serve",
     "lint": "eslint ./src",
     "format": "prettier ./src --check",
     "fix": "prettier ./src --write && eslint ./src --fix"
@@ -23,6 +23,7 @@
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.0.2"
   }
 }
