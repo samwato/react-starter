@@ -12,6 +12,7 @@ export function Layout({ children }) {
             <Link to="/">Home</Link>
             <Link to="/dashboard">Dashboard</Link>
             <Link to="/reports">Reports</Link>
+            <Link to="/nowhere">Nowhere</Link>
           </li>
         </ul>
       </div>

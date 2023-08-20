@@ -7,11 +7,10 @@ import NotFound from './routes/not-found'
 
 export default function App() {
   return (
-    <RouterProvider>
+    <RouterProvider fallback={<NotFound />}>
       <Route path="/" component={<Home />} />
       <Route path="/dashboard" component={<Dashboard />} />
       <Route path="/reports" component={<Reports />} />
-      <Route fallback component={<NotFound />} />
     </RouterProvider>
   )
 }
