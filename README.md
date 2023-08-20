@@ -21,7 +21,8 @@ Bundler
 - [x] Esbuild
 - [x] Live Reload for development
 - [x] Production builds
-- [ ] Typescript (tsx more files)
+- [x] Typescript
+- [x] Images
 
 Styling
 
@@ -42,7 +43,7 @@ Testing
 - [ ] Jest
 - [ ] React testing library
 
-Bonus Extras
+Library Extras Included
 
 - [x] Client side routing
 - [ ] UI Library

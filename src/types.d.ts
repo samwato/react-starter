@@ -1,0 +1,8 @@
+declare module '*.module.css'
+declare module '*.png'
+declare module '*.jpg'
+declare module '*.svg'
+
+interface Window {
+  IS_PRODUCTION: boolean
+}

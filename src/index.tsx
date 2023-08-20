@@ -20,6 +20,6 @@ const RenderApp = () =>
     <App />
   )
 
-const rootElement = document.querySelector('#root')
+const rootElement = document.querySelector('#root')!
 const root = createRoot(rootElement)
 root.render(<RenderApp />)

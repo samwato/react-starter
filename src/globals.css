@@ -1,8 +1,8 @@
 @import 'normalize.css';
 
 :root {
-  --primary-bg-color: #212121;
-  --secondary-bg-color: #1a1a1a;
+  --primary-bg-color: #121212;
+  --secondary-bg-color: #000;
 }
 
 html {

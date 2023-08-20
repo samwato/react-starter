@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, forwardRef } from 'react'
 import { useNavigate } from './hooks'
 import { useRouter } from './context'
 import { type LinkProps, type RouteProps } from './types'
