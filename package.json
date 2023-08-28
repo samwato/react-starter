@@ -11,10 +11,11 @@
     "build": "esbuild --define:window.IS_PRODUCTION=true ./src/index.jsx --loader:.png=file --loader:.jpg=file --public-path=dist --outdir=www/dist --bundle --minify --sourcemap --sources-content=false --analyze",
     "serve": "esbuild --servedir=www --serve-fallback=www/index.html",
     "prod": "npm run build && npm run serve",
+    "fix": "prettier . --write && eslint . --fix",
+    "check": "npm run lint && npm run format && npm run type",
     "lint": "eslint .",
     "format": "prettier . --check",
-    "type": "tsc",
-    "fix": "prettier . --write && eslint . --fix"
+    "type": "tsc"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
