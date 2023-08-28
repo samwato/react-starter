@@ -2,11 +2,19 @@
 
 This repo is a good starting point for a basic React app.
 
+## Get Started
+
+To get started run the init script `init-repo.sh`
+
+## Develop
+
 To run the app in dev mode, run:
 
 ```
 npm run dev
 ```
+
+## Production
 
 To run the app after a production build, run:
 
@@ -14,15 +22,16 @@ To run the app after a production build, run:
 npm run prod
 ```
 
-### This starter app includes the following features:
+## Features
+
+This starter app includes the following features:
 
 Bundler
 
 - [x] Esbuild
-- [x] Live Reload for development
 - [x] Production builds
 - [x] Typescript
-- [x] Images
+- [x] Image support (.png, .jpg and .svg)
 
 Styling
 
@@ -31,14 +40,17 @@ Styling
 
 Linting and Formatting
 
-- [ ] Preconfigured Eslint
-- [ ] Preconfigured Prettier
+- [x] Eslint
+- [x] Prettier
 
-Workflow
+Development Workflow
 
-- [ ] Git hooks that fix code on commits, https://prettier.io/docs/en/precommit
+- [x] Live Reload for development
+- [x] Git pre-commit hook runs lint, format and type checking
 
 Testing
+
+https://testing-library.com/docs/react-testing-library/setup#configuring-jest-with-test-utils
 
 - [ ] Jest
 - [ ] React testing library
