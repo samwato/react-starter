@@ -1,9 +1,9 @@
-import React from 'react'
-import heroImage from './hero.jpg'
-import { Layout } from '../../components/layout'
-import styles from './dashboard.module.css'
+import * as React from 'react'
+import heroImage from '@/routes/dashboard/hero.jpg'
+import { Layout } from '@/components/layout'
+import styles from '@/routes/dashboard/dashboard.module.css'
 
-export default function Dashboard() {
+export function Dashboard() {
   return (
     <Layout>
       <h1>Dashboard</h1>

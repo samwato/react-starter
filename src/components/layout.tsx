@@ -1,10 +1,10 @@
-import React, { type ReactNode } from 'react'
-import { Link } from '../lib/router'
-import styles from './layout.module.css'
+import * as React from 'react'
+import { Link } from '@/lib/router'
+import styles from '@/components/layout.module.css'
 
 const logoText = 'React Starter'
 
-export function Layout({ children }: { children: ReactNode }) {
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <div className={styles.menu}>

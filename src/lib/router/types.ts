@@ -1,11 +1,5 @@
-import {
-  ReactNode,
-  ReactElement,
-  Dispatch,
-  HTMLAttributes,
-  ComponentProps,
-} from 'react'
-import { Route } from './components'
+import * as React from 'react'
+import { Route } from '@/lib/router/components'
 
 export type RouterState = {
   location: string
@@ -17,13 +11,13 @@ export type RouterAction = {
   payload: string
 }
 
-export type RouterDispatch = Dispatch<RouterAction>
+export type RouterDispatch = React.Dispatch<RouterAction>
 
 export type RouterContextValue = [RouterState, RouterDispatch]
 
 export type RouterProviderProps = {
-  children: ReactNode
-  fallback?: ReactNode
+  children: React.ReactNode
+  fallback?: React.ReactNode
 }
 
 export type RouterReducer = (
@@ -31,16 +25,16 @@ export type RouterReducer = (
   action: RouterAction,
 ) => RouterState
 
-export interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   to: string
 }
 
 export type RouteProps = {
-  component: ReactNode
+  component: React.ReactNode
   path: string
 }
 
-export type RouteComponent = ReactElement<
-  ComponentProps<typeof Route>,
+export type RouteComponent = React.ReactElement<
+  React.ComponentProps<typeof Route>,
   typeof Route
 >

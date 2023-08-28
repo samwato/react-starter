@@ -1,10 +1,10 @@
-import React, {
+import * as React from 'react'
+import {
   createContext,
   useContext,
   useLayoutEffect,
   useReducer,
   isValidElement,
-  type ReactNode,
 } from 'react'
 import {
   type RouterProviderProps,
@@ -12,7 +12,7 @@ import {
   type RouterDispatch,
   type RouterContextValue,
   RouteComponent,
-} from './types'
+} from '@/lib/router/types'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
 
@@ -42,7 +42,7 @@ export function setRouteLocation(dispatch: RouterDispatch, path: string) {
   dispatch({ type: 'set', payload: path })
 }
 
-function isRouteComponent(node: ReactNode): node is RouteComponent {
+function isRouteComponent(node: React.ReactNode): node is RouteComponent {
   return (
     !!node &&
     isValidElement(node) &&
@@ -51,7 +51,7 @@ function isRouteComponent(node: ReactNode): node is RouteComponent {
   )
 }
 
-function getRoutesFromComponents(children: ReactNode): string[] {
+function getRoutesFromComponents(children: React.ReactNode): string[] {
   const routes: string[] = []
 
   // Handle single react element
@@ -61,7 +61,7 @@ function getRoutesFromComponents(children: ReactNode): string[] {
 
   // Handle multiple react elements
   if (Array.isArray(children)) {
-    children.forEach((node: ReactNode) => {
+    children.forEach((node: React.ReactNode) => {
       if (isRouteComponent(node)) {
         routes.push(node.props.path)
       }

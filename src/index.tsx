@@ -1,7 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './app'
-import './globals.css'
+import { App } from '@/app'
+import '@/globals.css'
 
 // Live Reload
 if (!window.IS_PRODUCTION) {

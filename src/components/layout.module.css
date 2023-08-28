@@ -33,10 +33,13 @@
   padding: 10px;
 }
 
-.link, .link:link, .link:visited {
+.link,
+.link:link,
+.link:visited {
   color: #ccc;
 }
 
-.link:hover, .link:active {
+.link:hover,
+.link:active {
   color: white;
 }

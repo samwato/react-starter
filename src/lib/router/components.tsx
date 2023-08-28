@@ -1,12 +1,12 @@
-import React, { MouseEvent, forwardRef } from 'react'
-import { useNavigate } from './hooks'
-import { useRouter } from './context'
-import { type LinkProps, type RouteProps } from './types'
+import * as React from 'react'
+import { useNavigate } from '@/lib/router/hooks'
+import { useRouter } from '@/lib/router/context'
+import { type LinkProps, type RouteProps } from '@/lib/router/types'
 
 export function Link({ to, ...props }: LinkProps) {
   const navigate = useNavigate()
 
-  function handleClick(event: MouseEvent) {
+  function handleClick(event: React.MouseEvent) {
     event.preventDefault()
     navigate(to)
   }
