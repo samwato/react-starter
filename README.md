@@ -52,11 +52,11 @@ Testing
 
 https://testing-library.com/docs/react-testing-library/setup#configuring-jest-with-test-utils
 
-- [ ] Jest
-- [ ] React testing library
+- [x] Jest
+- [x] React testing library
 
 Library Extras Included
 
-- [x] Client side routing
+- [ ] Client side routing. Sub routes not complete
 - [ ] UI Library
 - [ ] Helper hooks
