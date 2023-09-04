@@ -3,7 +3,7 @@ import { useNavigate } from '@/lib/router/hooks'
 import { useRouter } from '@/lib/router/context'
 import { type LinkProps, type RouteProps } from '@/lib/router/types'
 
-export function Link({ to, ...props }: LinkProps) {
+export function Link({ to, children, ...props }: LinkProps) {
   const navigate = useNavigate()
 
   function handleClick(event: React.MouseEvent) {
@@ -11,7 +11,11 @@ export function Link({ to, ...props }: LinkProps) {
     navigate(to)
   }
 
-  return <a {...props} href={to} onClick={handleClick} />
+  return (
+    <a {...props} href={to} onClick={handleClick}>
+      {children}
+    </a>
+  )
 }
 
 export function Route({ component, path }: RouteProps) {
