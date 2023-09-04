@@ -1,3 +1,7 @@
-www/dist
-.idea
 node_modules
+www/dist
+
+# Misc
+.idea
+.DS_STORE
+*.swp

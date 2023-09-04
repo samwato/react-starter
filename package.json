@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "esbuild --define:window.IS_PRODUCTION=false ./src/index.jsx --loader:.png=file --loader:.jpg=file --public-path=dist --outdir=www/dist --bundle --watch --servedir=www --serve-fallback=www/index.html",
     "cleanbuild": "rm -r www/dist",
-    "prebuild": "npm run type && npm run lint && npm run cleanbuild",
+    "prebuild": "npm run check && npm run cleanbuild",
     "build": "esbuild --define:window.IS_PRODUCTION=true ./src/index.jsx --loader:.png=file --loader:.jpg=file --public-path=dist --outdir=www/dist --bundle --minify --sourcemap --sources-content=false --analyze",
     "serve": "esbuild --servedir=www --serve-fallback=www/index.html",
     "prod": "npm run build && npm run serve",
@@ -23,6 +23,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.2",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
@@ -32,8 +35,12 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jest": "^27.2.3",
+    "eslint-plugin-jest-dom": "^5.1.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^6.0.1",
+    "jest": "^29.6.4",
     "prettier": "^3.0.2",
     "typescript": "^5.1.6"
   }
