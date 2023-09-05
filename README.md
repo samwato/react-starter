@@ -4,7 +4,11 @@ This repo is a good starting point for a basic React app.
 
 ## Get Started
 
-To get started run the init script `init-repo.sh`
+To get started run the init script
+
+```shell
+init-repo.sh
+```
 
 ## Develop
 
@@ -26,36 +30,43 @@ npm run prod
 
 This starter app includes the following features:
 
-Bundler
+| **Bundler**                         |     |
+| ----------------------------------- | --- |
+| Esbuild                             | ✅  |
+| Production Builds                   | ✅  |
+| Typescript                          | ✅  |
+| Image Loaders (.png, .jpg and .svg) | ✅  |
+| **Styling**                         |     |
+| Normalize CSS                       | ✅  |
+| CSS Modules                         | ✅  |
+| **Linting**                         |     |
+| Eslint                              | ✅  |
+| **Formatting**                      |     |
+| Prettier                            | ✅  |
+| **Development Workflow**            |     |
+| Live Reload                         | ✅  |
+| Pre-commit Hook                     | ✅  |
+| **Testing**                         |     |
+| Jest                                | ✅  |
+| React Testing Library               | ✅  |
 
-- [x] Esbuild
-- [x] Production builds
-- [x] Typescript
-- [x] Image support (.png, .jpg and .svg)
+## Library Extras
 
-Styling
+In the `src/lib` folder there are extra libraries and helpers that provide basic solutions to common web app problems.
+These are can easily be removed and replace with external libraries.
 
-- [x] Normalize CSS
-- [x] CSS Modules
+#### 1. Router
 
-Linting and Formatting
+Lightweight alternative client side router.
+Does not support nested routes, params or search params.
+For production ready router try [React Router](https://reactrouter.com/en/main) instead.
 
-- [x] Eslint
-- [x] Prettier
+#### 2. Fetcher
 
-Development Workflow
+TODO
 
-- [x] Live Reload for development
-- [x] Git pre-commit hook runs lint, format and type checking
+## Things In Progress
 
-Testing
-
-- [x] Jest
-- [x] React testing library
-
-Library Extras Included
-
-- [ ] Client side routing. Sub routes not complete
-- [ ] UI Library
-- [ ] Helper hooks
-- [ ] Helper test setup and functions
+- [ ] Language support
+- [ ] UI Library support, theming, accessibility component, etc.
+- [ ] Helper hooks, router hooks, locales, media queries, etc.
