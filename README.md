@@ -50,8 +50,6 @@ Development Workflow
 
 Testing
 
-https://testing-library.com/docs/react-testing-library/setup#configuring-jest-with-test-utils
-
 - [x] Jest
 - [x] React testing library
 
@@ -60,3 +58,4 @@ Library Extras Included
 - [ ] Client side routing. Sub routes not complete
 - [ ] UI Library
 - [ ] Helper hooks
+- [ ] Helper test setup and functions
