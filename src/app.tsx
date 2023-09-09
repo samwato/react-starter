@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Route, RouterProvider } from '@/lib/router'
-import { Dashboard } from '@/routes/dashboard/dashboard'
+import { Dashboard } from '@/routes/dashboard'
 import { Reports } from '@/routes/reports'
 import { NotFound } from '@/routes/not-found'
 

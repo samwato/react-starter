@@ -67,6 +67,7 @@ TODO
 
 ## Things In Progress
 
+- [ ] Add tests for Router
 - [ ] Language support
 - [ ] UI Library support, theming, accessibility component, etc.
 - [ ] Helper hooks, router hooks, locales, media queries, etc.

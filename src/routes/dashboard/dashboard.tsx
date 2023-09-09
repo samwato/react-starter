@@ -1,7 +1,7 @@
 import * as React from 'react'
-import heroImage from '@/routes/dashboard/hero.jpg'
 import { Layout } from '@/components/layout'
-import styles from '@/routes/dashboard/dashboard.module.css'
+import heroImage from './hero.jpg'
+import styles from './dashboard.module.css'
 
 export function Dashboard() {
   return (
