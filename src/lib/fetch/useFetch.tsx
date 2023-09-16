@@ -1,42 +1,43 @@
-import { useEffect, useReducer } from 'react'
-import { type FetchReducer, FetchState } from '@/lib/fetch/types'
+import { useEffect, useReducer, useRef } from 'react'
+import type { FetchAction, FetchState } from './types'
 
-/*
-  Features TODO
-  - Sort out loop in useEffect, also allow props to be object without looping in useEffect
-  - Add caching from key
-  - Multiple mounts does only one network request
- */
+function fetchReducer<TData>(
+  _: FetchState<TData>,
+  action: FetchAction<TData>,
+): FetchState<TData> {
+  switch (action.type) {
+    case 'pending':
+      return { status: 'pending', data: undefined, error: undefined }
+    case 'resolved':
+      return { status: 'resolved', data: action.payload, error: undefined }
+    case 'rejected':
+      return { status: 'rejected', data: undefined, error: action.payload }
+    default:
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      throw new Error(`Unhandled action type: ${action.type}`)
+  }
+}
 
-export function useFetch<TData>(url: string, init): FetchState<TData> {
-  const [state, dispatch] = useReducer<FetchReducer<TData>>(
-    (_, action) => {
-      switch (action.type) {
-        case 'pending': {
-          return { status: 'pending', data: undefined, error: undefined }
-        }
-        case 'resolved': {
-          return { status: 'resolved', data: action.payload, error: undefined }
-        }
-        case 'rejected': {
-          return { status: 'rejected', data: undefined, error: action.payload }
-        }
-        default: {
-          throw new Error(`Unhandled action type: ${action.type}`)
-        }
-      }
-    },
-    {
-      data: undefined,
-      error: undefined,
-      status: 'idle',
-    },
-  )
+export function useFetch<TData>(
+  url: string,
+  init?: HeadersInit,
+): FetchState<TData> {
+  const hasFetched = useRef(false)
+
+  const [state, dispatch] = useReducer(fetchReducer<TData>, {
+    data: undefined,
+    error: undefined,
+    status: 'idle',
+  })
 
   useEffect(() => {
-    dispatch({ type: 'pending' })
+    // Early exit conditions
+    if (state.status !== 'idle' || hasFetched.current) return
 
-    // if (state.status === 'pending') return
+    hasFetched.current = true
+
+    dispatch({ type: 'pending' })
 
     const request = new Request(url, {
       headers: {
@@ -44,25 +45,30 @@ export function useFetch<TData>(url: string, init): FetchState<TData> {
         ...init,
       },
     })
-    const promise = fetch(request)
-    promise
+
+    fetch(request)
       .then((res) => {
-        if (request.headers.get('Accept') === 'application/json') {
-          return res.json()
-        } else {
-          // TODO make better
-          return res.text()
+        const contentType = res.headers.get('Content-Type')
+
+        if (contentType !== 'application/json') {
+          dispatch({
+            type: 'rejected',
+            payload: `Unsupported content-type of ${contentType}!`,
+          })
         }
+
+        return res.json()
       })
       .then((data) => {
-        console.log('data')
         dispatch({ type: 'resolved', payload: data })
       })
       .catch((err) => {
-        console.log(err)
-        dispatch({ type: 'rejected', payload: err.message })
+        dispatch({
+          type: 'rejected',
+          payload: err.message ?? 'Failed to fetch!',
+        })
       })
-  }, [init, url])
+  }, [init, state.status, url])
 
   return state
 }

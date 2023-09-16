@@ -24,9 +24,6 @@ export type FetchState<TData> =
 
 export type FetchAction<TData> =
   | {
-      type: 'idle'
-    }
-  | {
       type: 'pending'
     }
   | {
@@ -39,8 +36,3 @@ export type FetchAction<TData> =
     }
 
 export type FetchDispatch<TData> = React.Dispatch<FetchAction<TData>>
-
-export type FetchReducer<TData> = (
-  state: FetchState<TData>,
-  action: FetchAction<TData>,
-) => FetchState<TData>

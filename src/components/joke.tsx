@@ -7,12 +7,11 @@ interface JokeData {
   status: number
 }
 
-export function Jokes() {
+export function Joke() {
   const { data, error, status } = useFetch<JokeData>(
-    'https://icanhazdadjoke.com',
+    'https://icanhazdadjoke.com/',
+    { Accept: 'application/json' },
   )
-
-  console.log(data, error, status)
 
   let content = null
 
