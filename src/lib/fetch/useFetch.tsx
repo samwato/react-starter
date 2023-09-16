@@ -1,5 +1,10 @@
-import { useEffect, useReducer, useRef } from 'react'
-import type { FetchAction, FetchState } from './types'
+import { useCallback, useEffect, useReducer, useRef } from 'react'
+import type {
+  FetchAction,
+  FetchState,
+  UseFetchOptions,
+  UseFetchResponse,
+} from './types'
 
 function fetchReducer<TData>(
   _: FetchState<TData>,
@@ -21,8 +26,8 @@ function fetchReducer<TData>(
 
 export function useFetch<TData>(
   url: string,
-  init?: HeadersInit,
-): FetchState<TData> {
+  options?: UseFetchOptions,
+): UseFetchResponse<TData> {
   const hasFetched = useRef(false)
 
   const [state, dispatch] = useReducer(fetchReducer<TData>, {
@@ -31,44 +36,54 @@ export function useFetch<TData>(
     status: 'idle',
   })
 
-  useEffect(() => {
-    // Early exit conditions
-    if (state.status !== 'idle' || hasFetched.current) return
-
-    hasFetched.current = true
-
-    dispatch({ type: 'pending' })
-
+  const runFetch = useCallback(async (): Promise<void> => {
     const request = new Request(url, {
       headers: {
         Accept: 'application/json',
-        ...init,
+        ...options?.headers,
       },
     })
 
-    fetch(request)
-      .then((res) => {
-        const contentType = res.headers.get('Content-Type')
+    dispatch({ type: 'pending' })
 
-        if (contentType !== 'application/json') {
-          dispatch({
-            type: 'rejected',
-            payload: `Unsupported content-type of ${contentType}!`,
-          })
-        }
+    try {
+      const res = await fetch(request)
+      const contentType = res.headers.get('Content-Type')
 
-        return res.json()
-      })
-      .then((data) => {
-        dispatch({ type: 'resolved', payload: data })
-      })
-      .catch((err) => {
+      if (contentType !== 'application/json') {
         dispatch({
           type: 'rejected',
-          payload: err.message ?? 'Failed to fetch!',
+          payload: `Unsupported content-type of ${contentType}!`,
         })
-      })
-  }, [init, state.status, url])
+        return
+      }
 
-  return state
+      const data = await res.json()
+
+      dispatch({ type: 'resolved', payload: data })
+    } catch (err) {
+      const errorMessage: string =
+        err instanceof Error ? err.message : String(err)
+
+      dispatch({
+        type: 'rejected',
+        payload: errorMessage,
+      })
+    }
+  }, [options?.headers, url])
+
+  useEffect(() => {
+    // Early exit conditions
+    if (!options?.fetchOnMount || state.status !== 'idle' || hasFetched.current)
+      return
+
+    hasFetched.current = true
+
+    runFetch()
+  }, [options?.fetchOnMount, runFetch, state.status, url])
+
+  return {
+    ...state,
+    runFetch,
+  }
 }

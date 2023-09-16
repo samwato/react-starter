@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import { useFetch } from '@/lib/fetch'
 
 interface JokeData {
@@ -8,9 +9,16 @@ interface JokeData {
 }
 
 export function Joke() {
-  const { data, error, status } = useFetch<JokeData>(
+  const [autoFetch, setAutoFetch] = useState<boolean>(false)
+
+  const { data, error, status, runFetch } = useFetch<JokeData>(
     'https://icanhazdadjoke.com/',
-    { Accept: 'application/json' },
+    {
+      headers: {
+        Accept: 'application/json',
+      },
+      fetchOnMount: autoFetch,
+    },
   )
 
   let content = null
@@ -30,5 +38,19 @@ export function Joke() {
       break
   }
 
-  return <div>{content}</div>
+  return (
+    <div>
+      <label>
+        Auto Fetch
+        <input
+          type="checkbox"
+          onChange={(event) => setAutoFetch(event.target.checked)}
+        />
+      </label>
+      <p>{content}</p>
+      <button type="button" onClick={runFetch}>
+        New Joke
+      </button>
+    </div>
+  )
 }
