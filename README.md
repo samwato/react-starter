@@ -95,6 +95,7 @@ Cons:
 
 ## Things In Progress
 
+- [ ] Router supports wrapper components that don't unmount
 - [ ] Toast alert solution
 - [ ] Add tests for lib extras
 - [ ] Language support
