@@ -6,8 +6,8 @@ This repo is a good starting point for a basic React app.
 
 To get started run the init script
 
-```shell
-init-repo.sh
+```
+npm run init
 ```
 
 ## Develop
@@ -30,44 +30,73 @@ npm run prod
 
 This starter app includes the following features:
 
-| **Bundler**                         |     |
-| ----------------------------------- | --- |
-| Esbuild                             | ✅  |
-| Production Builds                   | ✅  |
-| Typescript                          | ✅  |
-| Image Loaders (.png, .jpg and .svg) | ✅  |
-| **Styling**                         |     |
-| Normalize CSS                       | ✅  |
-| CSS Modules                         | ✅  |
-| **Linting**                         |     |
-| Eslint                              | ✅  |
-| **Formatting**                      |     |
-| Prettier                            | ✅  |
-| **Development Workflow**            |     |
-| Live Reload                         | ✅  |
-| Pre-commit Hook                     | ✅  |
-| **Testing**                         |     |
-| Jest                                | ✅  |
-| React Testing Library               | ✅  |
+| **Features**                          |     |
+| ------------------------------------- | --- |
+| **Bundler**:                          |     |
+| - Esbuild                             | ✅  |
+| - Production Builds                   | ✅  |
+| - Typescript                          | ✅  |
+| - Image Loaders (.png, .jpg and .svg) | ✅  |
+| **Styling:**                          |     |
+| - Normalize CSS                       | ✅  |
+| - CSS Modules                         | ✅  |
+| **Linting:**                          |     |
+| - Eslint                              | ✅  |
+| **Formatting:**                       |     |
+| - Prettier                            | ✅  |
+| **Development Workflow:**             |     |
+| - Live Reload                         | ✅  |
+| - Pre-commit Hook                     | ✅  |
+| **Testing:**                          |     |
+| - Jest                                | ✅  |
+| - React Testing Library               | ✅  |
 
 ## Library Extras
 
 In the `src/lib` folder there are extra libraries and helpers that provide basic solutions to common web app problems.
 These are can easily be removed and replace with external libraries.
 
-#### 1. Router
+### Router
 
 Lightweight alternative client side router.
-Does not support nested routes, params or search params.
 For production ready router try [React Router](https://reactrouter.com/en/main) instead.
 
-#### 2. Fetcher
+Pros:
 
-TODO
+- Lightweight
+- Not another npm package
+
+Cons:
+
+- Missing features
+  - Nested routes
+  - Url params
+  - Search params
+- Not for production
+
+### Fetcher
+
+Lightweight alternative for fetching data.
+For production ready solution try [Tanstack Query](https://tanstack.com/query/latest/) instead.
+
+Pros:
+
+- Lightweight
+- Not another npm package
+- Simple state factory
+- Option for auto fetch on mount
+
+Cons:
+
+- Missing features
+  - No retries
+  - No caching
+  - Does not consolidate multiple network requests
 
 ## Things In Progress
 
-- [ ] Add tests for Router
+- [ ] Toast alert solution
+- [ ] Add tests for lib extras
 - [ ] Language support
 - [ ] UI Library support, theming, accessibility component, etc.
 - [ ] Helper hooks, router hooks, locales, media queries, etc.
