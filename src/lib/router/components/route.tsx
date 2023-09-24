@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useRouter } from '../context/router'
 import { OutletProvider, useOutlet } from '../context/outlet'
-import { resolvePaths } from '../helper/path'
-import { type RouteProps } from '../types'
+import { resolvePaths } from '../utils/resolve-paths'
+import type { RouteProps } from '../types'
 
 export function Route({ children, component, path }: RouteProps) {
   const [{ location }] = useRouter()

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { createContext, useContext } from 'react'
-import { type OutletProviderProps, type OutletContextValue } from '../types'
+import type { OutletProviderProps, OutletContextValue } from '../types'
 
 const OutletContext = createContext<OutletContextValue | undefined>(undefined)
 

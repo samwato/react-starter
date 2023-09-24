@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useNavigate } from '../hooks/navigate'
-import { type LinkProps } from '../types'
+import type { LinkProps } from '../types'
 
 export function Link({ to, children, ...props }: LinkProps) {
   const navigate = useNavigate()

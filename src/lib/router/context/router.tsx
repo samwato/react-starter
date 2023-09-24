@@ -1,20 +1,13 @@
 import * as React from 'react'
-import {
-  createContext,
-  useContext,
-  useLayoutEffect,
-  useReducer,
-  isValidElement,
-} from 'react'
-import {
-  type RouterProviderProps,
-  type RouterReducer,
-  type RouterDispatch,
-  type RouterContextValue,
-  RouteComponent,
+import { createContext, useContext, useLayoutEffect, useReducer } from 'react'
+import type {
+  RouterProviderProps,
+  RouterReducer,
+  RouterDispatch,
+  RouterContextValue,
 } from '../types'
-import { OutletProvider } from '@/lib/router/context/outlet'
-import { resolvePaths } from '@/lib/router/helper/path'
+import { OutletProvider } from '../context/outlet'
+import { getRoutesFromComponents } from '../utils/get-routes'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
 
@@ -42,42 +35,6 @@ const routerReducer: RouterReducer = (state, action) => {
 
 export function setRouteLocation(dispatch: RouterDispatch, path: string) {
   dispatch({ type: 'set', payload: path })
-}
-
-function isRouteComponent(node: React.ReactNode): node is RouteComponent {
-  return (
-    !!node &&
-    isValidElement(node) &&
-    typeof node.type !== 'string' &&
-    node.type.prototype.isRouteComponent
-  )
-}
-
-function getRoutesFromComponents(
-  node: React.ReactNode,
-  baseRoute: string = '/',
-  routes: Set<string> = new Set(),
-): Set<string> {
-  if (!isRouteComponent(node)) return routes
-
-  const route = resolvePaths(baseRoute, node.props.path ?? '')
-
-  if (node.props.path) {
-    routes.add(route)
-  }
-
-  const children: React.ReactNode[] = Array.isArray(node.props.children)
-    ? node.props.children
-    : [node.props.children]
-
-  children.forEach((childNode) => {
-    const childRoutes = getRoutesFromComponents(childNode, route, routes)
-    childRoutes.forEach((childRoute) => {
-      routes.add(childRoute)
-    })
-  })
-
-  return routes
 }
 
 export function RouterProvider({
