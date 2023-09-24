@@ -2,6 +2,11 @@
   margin: 0;
 }
 
+.title a {
+  color: white;
+  text-decoration: none;
+}
+
 .menu {
   background-color: var(--primary-bg-color);
   padding: 10px 20px;

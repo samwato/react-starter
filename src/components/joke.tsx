@@ -47,7 +47,7 @@ export function Joke() {
           onChange={(event) => setAutoFetch(event.target.checked)}
         />
       </label>
-      <p>{content}</p>
+      <div>{content}</div>
       <button type="button" onClick={runFetch}>
         New Joke
       </button>

@@ -1,10 +1,14 @@
-export function normalizePath(path: string): string {
-  if (path === '/') return path
+export function resolvePaths(...paths: string[]): string {
+  if (paths.length < 1) {
+    throw new Error('resolvePaths must have at least 1 path!')
+  }
 
-  let normalizedPath = path
-  if (!normalizedPath.startsWith('/')) normalizedPath = '/' + normalizedPath
-  if (normalizedPath.endsWith('/')) normalizedPath = normalizedPath.substring(0, normalizedPath.length - 1)
-  normalizedPath = normalizedPath.replace('//', '/')
-
-  return normalizedPath
+  return paths.reduce((resolvedPath, path) => {
+    const normalizedPath = path.replaceAll('/', '')
+    if (normalizedPath) {
+      if (resolvedPath !== '/') resolvedPath += '/'
+      resolvedPath += normalizedPath
+    }
+    return resolvedPath
+  }, '/')
 }

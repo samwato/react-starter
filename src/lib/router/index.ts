@@ -1,4 +1,4 @@
-export { Link, } from './components/link'
+export { Link } from './components/link'
 export { Route } from './components/route'
 export { useNavigate } from './hooks/navigate'
 export { useRouter, RouterProvider } from './context/router'

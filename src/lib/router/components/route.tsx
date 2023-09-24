@@ -1,25 +1,26 @@
 import * as React from 'react'
 import { useRouter } from '../context/router'
+import { OutletProvider, useOutlet } from '../context/outlet'
+import { resolvePaths } from '../helper/path'
 import { type RouteProps } from '../types'
-import { OutletProvider, useOutlet } from '@/lib/router/context/outlet'
-import { normalizePath } from '@/lib/router/helper/path'
 
 export function Route({ children, component, path }: RouteProps) {
   const [{ location }] = useRouter()
   const { inheritPath } = useOutlet()
 
+  const routePath = resolvePaths(inheritPath, path ?? '')
+  const isIndex = !path
 
-  const normalizedPath = path ? normalizePath(path) : undefined
-  const normalizedInheritPath = normalizePath(inheritPath)
+  if (!location.startsWith(routePath)) return null
 
-  const routePath = normalizedPath ? normalizedInheritPath + normalizedPath : normalizedInheritPath
-  const normalizedRoutePath = normalizePath(routePath)
+  // index paths needs to be exact
+  if (isIndex && location !== routePath) return null
 
-  return location === normalizedRoutePath ? (
-    <OutletProvider inheritPath={normalizedRoutePath} outlet={children}>
+  return (
+    <OutletProvider inheritPath={routePath} outlet={children}>
       {component}
     </OutletProvider>
-  ) : null
+  )
 }
 
 Route.prototype.isRouteComponent = true

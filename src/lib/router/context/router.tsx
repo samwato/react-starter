@@ -14,6 +14,7 @@ import {
   RouteComponent,
 } from '../types'
 import { OutletProvider } from '@/lib/router/context/outlet'
+import { resolvePaths } from '@/lib/router/helper/path'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
 
@@ -52,27 +53,38 @@ function isRouteComponent(node: React.ReactNode): node is RouteComponent {
   )
 }
 
-function getRoutesFromComponents(children: React.ReactNode): string[] {
-  const routes: string[] = []
+function getRoutesFromComponents(
+  node: React.ReactNode,
+  baseRoute: string = '/',
+  routes: Set<string> = new Set(),
+): Set<string> {
+  if (!isRouteComponent(node)) return routes
 
-  // Handle single react element
-  if (isRouteComponent(children)) {
-    if (children.props.path) routes.push(children.props.path)
+  const route = resolvePaths(baseRoute, node.props.path ?? '')
+
+  if (node.props.path) {
+    routes.add(route)
   }
 
-  // Handle multiple react elements
-  if (Array.isArray(children)) {
-    children.forEach((node: React.ReactNode) => {
-      if (isRouteComponent(node)) {
-        if (node.props.path) routes.push(node.props.path)
-      }
+  const children: React.ReactNode[] = Array.isArray(node.props.children)
+    ? node.props.children
+    : [node.props.children]
+
+  children.forEach((childNode) => {
+    const childRoutes = getRoutesFromComponents(childNode, route, routes)
+    childRoutes.forEach((childRoute) => {
+      routes.add(childRoute)
     })
-  }
+  })
 
   return routes
 }
 
-export function RouterProvider({ basePath, children, fallback }: RouterProviderProps) {
+export function RouterProvider({
+  basePath,
+  children,
+  fallback,
+}: RouterProviderProps) {
   const [state, dispatch] = useReducer(
     routerReducer,
     {
@@ -85,7 +97,7 @@ export function RouterProvider({ basePath, children, fallback }: RouterProviderP
     }),
   )
 
-  const noRouteMatches = !state.routes.includes(state.location)
+  const noRouteMatches = !state.routes.has(state.location)
 
   useLayoutEffect(() => {
     function listener() {
@@ -102,9 +114,7 @@ export function RouterProvider({ basePath, children, fallback }: RouterProviderP
 
   return (
     <RouterContext.Provider value={[state, dispatch]}>
-      <OutletProvider inheritPath={basePath || '/'}>
-        {children}
-      </OutletProvider>
+      <OutletProvider inheritPath={basePath || '/'}>{children}</OutletProvider>
       {noRouteMatches && fallback ? fallback : null}
     </RouterContext.Provider>
   )

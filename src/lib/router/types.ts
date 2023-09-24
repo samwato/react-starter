@@ -3,7 +3,7 @@ import { Route } from './components/route'
 
 export type RouterState = {
   location: string
-  routes: string[]
+  routes: Set<string>
 }
 
 export type RouterAction = {

@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-export function NotFound() {
+export function Users() {
   return (
     <div>
-      <h1>Not Found</h1>
+      <h1>Users</h1>
     </div>
   )
 }

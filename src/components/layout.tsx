@@ -5,13 +5,14 @@ import styles from '@/components/layout.module.css'
 const logoText = 'React Starter'
 
 export function Layout() {
-  console.log('Layout')
   const { outlet } = useOutlet()
 
   return (
     <div>
       <div className={styles.menu}>
-        <h1 className={styles.title}>{logoText}</h1>
+        <h1 className={styles.title}>
+          <Link to="/">{logoText}</Link>
+        </h1>
         <ul className={styles.menu_list}>
           <li>
             <Link className={styles.link} to="/">
@@ -24,15 +25,18 @@ export function Layout() {
             </Link>
           </li>
           <li>
+            <Link className={styles.link} to="/accounts/users">
+              Users
+            </Link>
+          </li>
+          <li>
             <Link className={styles.link} to="/whoops">
               404
             </Link>
           </li>
         </ul>
       </div>
-      <main className={styles.main}>
-        {outlet}
-      </main>
+      <main className={styles.main}>{outlet}</main>
     </div>
   )
 }
