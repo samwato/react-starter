@@ -16,7 +16,7 @@ export function isRouteComponent(
 
 export function getRoutesFromComponents(
   node: React.ReactNode,
-  baseRoute: string = '/',
+  baseRoute: string,
   routes: Set<string> = new Set(),
 ): Set<string> {
   if (!isRouteComponent(node)) return routes

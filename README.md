@@ -69,7 +69,6 @@ Pros:
 Cons:
 
 - Missing features
-  - Nested routes
   - Url params
   - Search params
 - Not for production
@@ -95,9 +94,13 @@ Cons:
 
 ## Things In Progress
 
-- [ ] Router supports wrapper components that don't unmount
-- [ ] Toast alert solution
+- [ ] Router with url and search params
 - [ ] Add tests for lib extras
 - [ ] Language support
 - [ ] UI Library support, theming, accessibility component, etc.
-- [ ] Helper hooks, router hooks, locales, media queries, etc.
+- [ ] Any helper hooks, locales, media queries, etc.
+
+## Known Bugs
+
+- Browser refresh on nested routes crashes esbuild
+- css backgrounds url paths are not right

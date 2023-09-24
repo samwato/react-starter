@@ -38,7 +38,7 @@ export function setRouteLocation(dispatch: RouterDispatch, path: string) {
 }
 
 export function RouterProvider({
-  basePath,
+  basePath = '/',
   children,
   fallback,
 }: RouterProviderProps) {
@@ -46,15 +46,15 @@ export function RouterProvider({
     routerReducer,
     {
       location: '',
-      routes: [],
+      registeredRoutes: new Set(),
     },
     () => ({
       location: window.location.pathname,
-      routes: getRoutesFromComponents(children),
+      registeredRoutes: getRoutesFromComponents(children, basePath),
     }),
   )
 
-  const noRouteMatches = !state.routes.has(state.location)
+  const noRouteMatches = !state.registeredRoutes.has(state.location)
 
   useLayoutEffect(() => {
     function listener() {
@@ -71,7 +71,7 @@ export function RouterProvider({
 
   return (
     <RouterContext.Provider value={[state, dispatch]}>
-      <OutletProvider inheritPath={basePath || '/'}>{children}</OutletProvider>
+      <OutletProvider inheritPath={basePath}>{children}</OutletProvider>
       {noRouteMatches && fallback ? fallback : null}
     </RouterContext.Provider>
   )
