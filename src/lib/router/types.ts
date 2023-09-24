@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Route } from '@/lib/router/components'
+import { Route } from './components/route'
 
 export type RouterState = {
   location: string
@@ -16,6 +16,7 @@ export type RouterDispatch = React.Dispatch<RouterAction>
 export type RouterContextValue = [RouterState, RouterDispatch]
 
 export type RouterProviderProps = {
+  basePath?: string
   children: React.ReactNode
   fallback?: React.ReactNode
 }
@@ -30,11 +31,23 @@ export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
 }
 
 export type RouteProps = {
-  component: React.ReactNode
-  path: string
+  component: React.ReactElement
+  path?: string
+  children?: React.ReactNode
 }
 
 export type RouteComponent = React.ReactElement<
   React.ComponentProps<typeof Route>,
   typeof Route
 >
+
+export type OutletContextValue = {
+  inheritPath: string
+  outlet?: React.ReactNode
+}
+
+export type OutletProviderProps = {
+  children: React.ReactNode
+  inheritPath: string
+  outlet?: React.ReactNode
+}

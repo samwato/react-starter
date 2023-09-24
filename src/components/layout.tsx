@@ -1,10 +1,13 @@
 import * as React from 'react'
-import { Link } from '@/lib/router'
+import { Link, useOutlet } from '@/lib/router'
 import styles from '@/components/layout.module.css'
 
 const logoText = 'React Starter'
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout() {
+  console.log('Layout')
+  const { outlet } = useOutlet()
+
   return (
     <div>
       <div className={styles.menu}>
@@ -27,7 +30,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </li>
         </ul>
       </div>
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>
+        {outlet}
+      </main>
     </div>
   )
 }

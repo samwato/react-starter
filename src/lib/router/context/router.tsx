@@ -12,7 +12,8 @@ import {
   type RouterDispatch,
   type RouterContextValue,
   RouteComponent,
-} from '@/lib/router/types'
+} from '../types'
+import { OutletProvider } from '@/lib/router/context/outlet'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
 
@@ -56,14 +57,14 @@ function getRoutesFromComponents(children: React.ReactNode): string[] {
 
   // Handle single react element
   if (isRouteComponent(children)) {
-    routes.push(children.props.path)
+    if (children.props.path) routes.push(children.props.path)
   }
 
   // Handle multiple react elements
   if (Array.isArray(children)) {
     children.forEach((node: React.ReactNode) => {
       if (isRouteComponent(node)) {
-        routes.push(node.props.path)
+        if (node.props.path) routes.push(node.props.path)
       }
     })
   }
@@ -71,7 +72,7 @@ function getRoutesFromComponents(children: React.ReactNode): string[] {
   return routes
 }
 
-export function RouterProvider({ children, fallback }: RouterProviderProps) {
+export function RouterProvider({ basePath, children, fallback }: RouterProviderProps) {
   const [state, dispatch] = useReducer(
     routerReducer,
     {
@@ -101,7 +102,9 @@ export function RouterProvider({ children, fallback }: RouterProviderProps) {
 
   return (
     <RouterContext.Provider value={[state, dispatch]}>
-      {children}
+      <OutletProvider inheritPath={basePath || '/'}>
+        {children}
+      </OutletProvider>
       {noRouteMatches && fallback ? fallback : null}
     </RouterContext.Provider>
   )

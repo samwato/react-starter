@@ -1,4 +1,4 @@
-import { useRouter, setRouteLocation } from '@/lib/router/context'
+import { useRouter, setRouteLocation } from '../context/router'
 
 export function useNavigate() {
   const [, dispatch] = useRouter()

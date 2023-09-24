@@ -1,3 +1,5 @@
-export { Link, Route } from '@/lib/router/components'
-export { useNavigate } from '@/lib/router/hooks'
-export { useRouter, RouterProvider } from '@/lib/router/context'
+export { Link, } from './components/link'
+export { Route } from './components/route'
+export { useNavigate } from './hooks/navigate'
+export { useRouter, RouterProvider } from './context/router'
+export { useOutlet } from './context/outlet'
