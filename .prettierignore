@@ -1,3 +1,5 @@
 node_modules
 coverage
-www/dist
+www/assets
+www/public
+tsconfig.json

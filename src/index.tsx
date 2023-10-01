@@ -4,7 +4,7 @@ import { App } from '@/app'
 import '@/globals.css'
 
 // Live Reload
-if (!window.IS_PRODUCTION) {
+if (IS_DEV) {
   new EventSource('/esbuild').addEventListener('change', () =>
     location.reload(),
   )
@@ -12,7 +12,7 @@ if (!window.IS_PRODUCTION) {
 
 // Wrap App in strict mode in development
 const RenderApp = () =>
-  !window.IS_PRODUCTION ? (
+  IS_DEV ? (
     <React.StrictMode>
       <App />
     </React.StrictMode>

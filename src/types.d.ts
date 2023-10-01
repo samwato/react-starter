@@ -3,6 +3,4 @@ declare module '*.png'
 declare module '*.jpg'
 declare module '*.svg'
 
-interface Window {
-  IS_PRODUCTION: boolean
-}
+declare const IS_DEV: boolean

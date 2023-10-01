@@ -1,6 +1,7 @@
 node_modules
 coverage
-www/dist
+www/assets
+www/public
 
 # Misc
 .idea

@@ -99,8 +99,3 @@ Cons:
 - [ ] Language support
 - [ ] UI Library support, theming, accessibility component, etc.
 - [ ] Any helper hooks, locales, media queries, etc.
-
-## Known Bugs
-
-- Browser refresh on nested routes crashes esbuild
-- css backgrounds url paths are not right
