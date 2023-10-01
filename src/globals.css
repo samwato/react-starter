@@ -1,12 +1,12 @@
 @import 'normalize.css';
 
 :root {
-  --primary-bg-color: #121212;
-  --secondary-bg-color: #000;
+  --primary-color: #bde8fd;
+  --secondary-color: #2d212c;
 }
 
 html {
-  background-color: var(--secondary-bg-color);
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   font-family: sans-serif;
 }

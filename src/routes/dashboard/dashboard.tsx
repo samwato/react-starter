@@ -1,15 +1,15 @@
 import * as React from 'react'
-import heroImage from './hero.jpg'
 import styles from './dashboard.module.css'
 import { Joke } from '@/components/joke'
 
 export function Dashboard() {
   return (
     <>
-      <h1>Dashboard</h1>
-      <div className={styles.container}>
-        <img src={heroImage} alt="Hero" width="400" />
-      </div>
+      <section className={styles.section}>
+        <div className={styles.pill}>
+          <h3>Over 3 million ready-to-work creatives in our community!</h3>
+        </div>
+      </section>
       <Joke />
     </>
   )
