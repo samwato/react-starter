@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react'
 import { useFetch } from '@/lib/fetch'
+import styles from './joke.module.css'
 
 interface JokeData {
   id: string
@@ -40,17 +41,23 @@ export function Joke() {
 
   return (
     <div>
-      <label>
-        Auto Fetch
-        <input
-          type="checkbox"
-          onChange={(event) => setAutoFetch(event.target.checked)}
-        />
-      </label>
-      <div>{content}</div>
-      <button type="button" onClick={runFetch}>
-        New Joke
-      </button>
+      <h3 className={styles.tagline}>Tell me a Joke!</h3>
+
+      <div className={styles.joke}>{content}</div>
+
+      <div className={styles.actionsContainer}>
+        <button className={styles.button} type="button" onClick={runFetch}>
+          New Joke
+        </button>
+
+        <label className={styles.checkbox}>
+          Auto Fetch
+          <input
+            type="checkbox"
+            onChange={(event) => setAutoFetch(event.target.checked)}
+          />
+        </label>
+      </div>
     </div>
   )
 }
