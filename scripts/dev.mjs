@@ -1,18 +1,33 @@
 #!/usr/bin/env node
 
 import * as esbuild from 'esbuild'
+import { htmlPlugin } from './esbuild-html-plugin.mjs'
 
 let ctx = await esbuild.context({
-  assetNames: '../public/[name]-[hash]',
+  assetNames: 'assets/[name]-[hash]',
   bundle: true,
-  define: { IS_DEV: 'true' },
+  define: {
+    IS_DEV: 'true',
+  },
+  entryNames: '[name].bundle.[hash]',
   entryPoints: ['./src/index.jsx'],
+  format: 'esm',
   loader: {
     '.jpg': 'file',
     '.png': 'file',
     '.svg': 'file',
   },
-  outdir: 'www/assets',
+  metafile: true,
+  outdir: 'www',
+  platform: 'browser',
+  plugins: [
+    htmlPlugin({
+      favicon: '../public/favicon.svg',
+      template: '../public/index.html',
+      title: 'React Starter',
+    }),
+  ],
+  target: ['es6'],
 })
 
 await ctx.watch()

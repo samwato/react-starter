@@ -11,6 +11,3 @@ chmod +x .git/hooks/pre-commit
 
 # Install Dependencies
 npm ci
-
-# Create build dir
-mkdir -p www/dist
