@@ -94,7 +94,7 @@ Cons:
 
 ## Things In Progress
 
-- [ ] Router with url and search params
+- [ ] Router with query and search params
 - [ ] Add tests for lib extras
 - [ ] Language support
 - [ ] UI Library support, theming, accessibility component, etc.
