@@ -34,7 +34,7 @@ This starter app includes the following features:
 | ------------------------------------- | --- |
 | **Bundler**:                          |     |
 | - Esbuild                             | ✅  |
-| - Production Builds                   | ✅  |
+| - Production Build                   | ✅  |
 | - Typescript                          | ✅  |
 | - Image Loaders (.png, .jpg and .svg) | ✅  |
 | **Styling:**                          |     |
@@ -95,6 +95,7 @@ Cons:
 ## Things In Progress
 
 - [ ] Router with query and search params
+- [ ] react-hook-form alternative
 - [ ] Add tests for lib extras
 - [ ] Language support
 - [ ] UI Library support, theming, accessibility component, etc.

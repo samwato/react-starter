@@ -172,7 +172,7 @@ const config = {
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/test/file-transformer.js',
+      '<rootDir>/test/file-transformer.mjs',
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
@@ -194,4 +194,4 @@ const config = {
   // watchman: true,
 }
 
-module.exports = config
+export default config
