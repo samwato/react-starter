@@ -4,11 +4,14 @@ export function resolvePaths(...paths: string[]): string {
   }
 
   return paths.reduce((resolvedPath, path) => {
-    const normalizedPath = path.replaceAll('/', '')
-    if (normalizedPath) {
-      if (resolvedPath !== '/') resolvedPath += '/'
-      resolvedPath += normalizedPath
-    }
+    const normalizedPaths = path.split('/').slice(1)
+
+    normalizedPaths.forEach((normalizedPath) => {
+      if (normalizedPath) {
+        if (resolvedPath !== '/') resolvedPath += '/'
+        resolvedPath += normalizedPath
+      }
+    })
     return resolvedPath
   }, '/')
 }

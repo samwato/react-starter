@@ -1,25 +1,30 @@
 import * as React from 'react'
-import { useRouter } from '../context/router'
-import { OutletProvider, useOutlet } from '../context/outlet'
+import { useLocation } from '../context/router'
+import { RouteProvider, useRoute } from '../context/route'
 import { resolvePaths } from '../utils/resolve-paths'
 import type { RouteProps } from '../types'
+import { isExactMatch, isPartialMatch } from '@/lib/router/utils/is-match'
+import { getParams } from '@/lib/router/utils/get-params'
 
 export function Route({ children, component, path }: RouteProps) {
-  const [{ location }] = useRouter()
-  const { inheritPath } = useOutlet()
+  const location = useLocation()
+  const { path: inheritPath, params: inheritParams } = useRoute()
 
   const routePath = resolvePaths(inheritPath, path ?? '')
   const isIndex = !path
 
-  if (!location.startsWith(routePath)) return null
+  const isMatch = isIndex
+    ? isExactMatch(routePath, location)
+    : isPartialMatch(routePath, location)
 
-  // index paths needs to be exact
-  if (isIndex && location !== routePath) return null
+  if (!isMatch) return null
+
+  const routeParams = getParams(routePath, location, inheritParams)
 
   return (
-    <OutletProvider inheritPath={routePath} outlet={children}>
+    <RouteProvider params={routeParams} path={routePath} outlet={children}>
       {component}
-    </OutletProvider>
+    </RouteProvider>
   )
 }
 

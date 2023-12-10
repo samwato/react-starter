@@ -5,7 +5,7 @@ import { Logo } from '@/components/layout/logo'
 import styles from '@/components/layout/layout.module.css'
 
 export function Layout() {
-  const { outlet } = useOutlet()
+  const outlet = useOutlet()
 
   return (
     <div>

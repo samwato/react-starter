@@ -41,13 +41,17 @@ export type RouteComponent = React.ReactElement<
   typeof Route
 >
 
-export type OutletContextValue = {
-  inheritPath: string
+export type RouteParams = Record<string, string>
+
+export type RouteContextValue = {
   outlet?: React.ReactNode
+  params: RouteParams
+  path: string
 }
 
-export type OutletProviderProps = {
+export type RouteProviderProps = {
   children: React.ReactNode
-  inheritPath: string
   outlet?: React.ReactNode
+  params: RouteParams
+  path: string
 }

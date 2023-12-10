@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { createContext, useContext, useLayoutEffect, useReducer } from 'react'
-import type {
+import {
   RouterProviderProps,
   RouterReducer,
   RouterDispatch,
   RouterContextValue,
+  RouterState,
 } from '../types'
-import { OutletProvider } from '../context/outlet'
+import { RouteProvider } from '../context/route'
 import { getRoutesFromComponents } from '../utils/get-routes'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
@@ -61,6 +62,8 @@ export function RouterProvider({
       setRouteLocation(dispatch, window.location.pathname)
     }
 
+    // TODO: Add listener to support search params from window.location.search
+
     // Handles back and forward browser buttons
     window.addEventListener('popstate', listener)
 
@@ -71,8 +74,20 @@ export function RouterProvider({
 
   return (
     <RouterContext.Provider value={[state, dispatch]}>
-      <OutletProvider inheritPath={basePath}>{children}</OutletProvider>
+      <RouteProvider params={{}} path={basePath}>
+        {children}
+      </RouteProvider>
       {noRouteMatches && fallback ? fallback : null}
     </RouterContext.Provider>
   )
+}
+
+export const useLocation = (): RouterState['location'] => {
+  const routerContext = useContext(RouterContext)
+
+  if (!routerContext) {
+    throw new Error('useLocation must be wrapped with RouterContext')
+  }
+
+  return routerContext[0].location
 }
