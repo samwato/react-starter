@@ -1,14 +1,13 @@
 import * as React from 'react'
-import { useOutlet, useParams } from '@/lib/router'
+import { useParams, Link } from '@/lib/router'
 
 export function User() {
-  const outlet = useOutlet()
   const { userId } = useParams()
 
   return (
     <div>
       <h1>User: {userId}</h1>
-      {outlet}
+      <Link to={`/accounts/users/${userId}/1`}>Post 1</Link>
     </div>
   )
 }

@@ -9,6 +9,7 @@ import {
 } from '../types'
 import { RouteProvider } from '../context/route'
 import { getRoutesFromComponents } from '../utils/get-routes'
+import { isExactMatch } from '../utils/is-match'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
 
@@ -55,7 +56,12 @@ export function RouterProvider({
     }),
   )
 
-  const noRouteMatches = !state.registeredRoutes.has(state.location)
+  const noRouteMatches = !Array.from(state.registeredRoutes).some(
+    (registeredRoute) => {
+      const match = isExactMatch(registeredRoute, state.location)
+      return match
+    },
+  )
 
   useLayoutEffect(() => {
     function listener() {

@@ -16,11 +16,9 @@ export function App() {
         <Route component={<Dashboard />} />
         <Route path="/reports" component={<Reports />} />
         <Route path="/accounts" component={<Accounts />}>
-          <Route path="/users" component={<Users />}>
-            <Route path="/:userId" component={<User />}>
-              <Route path="/:postId" component={<Post />} />
-            </Route>
-          </Route>
+          <Route path="/users" component={<Users />} />
+          <Route path="/users/:userId" component={<User />} />
+          <Route path="/users/:userId/:postId" component={<Post />} />
         </Route>
       </Route>
     </RouterProvider>

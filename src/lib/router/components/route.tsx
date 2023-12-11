@@ -13,9 +13,10 @@ export function Route({ children, component, path }: RouteProps) {
   const routePath = resolvePaths(inheritPath, path ?? '')
   const isIndex = !path
 
-  const isMatch = isIndex
-    ? isExactMatch(routePath, location)
-    : isPartialMatch(routePath, location)
+  const isMatch =
+    isIndex || !children
+      ? isExactMatch(routePath, location)
+      : isPartialMatch(routePath, location)
 
   if (!isMatch) return null
 
