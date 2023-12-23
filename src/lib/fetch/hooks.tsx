@@ -36,7 +36,7 @@ export function useFetch<TData>(
     status: 'idle',
   })
 
-  const runFetch = useCallback(async (): Promise<void> => {
+  const runFetch = useCallback(async (): Promise<TData | undefined> => {
     const request = new Request(url, {
       headers: {
         Accept: 'application/json',
@@ -61,6 +61,8 @@ export function useFetch<TData>(
       const data = await res.json()
 
       dispatch({ type: 'resolved', payload: data })
+
+      return data
     } catch (err) {
       const errorMessage: string =
         err instanceof Error ? err.message : String(err)

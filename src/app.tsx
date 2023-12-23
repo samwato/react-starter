@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Route, RouterProvider } from '@/lib/router'
 import { Layout } from '@/components/layout'
 import { Dashboard } from '@/routes/dashboard'
-import { ReportsRoute } from '@/routes/reports'
+import { ReportsRoute, Reports } from '@/routes/reports'
 import { Accounts } from '@/routes/accounts'
 import { Users } from '@/routes/accounts/users'
 import { User } from '@/routes/accounts/users/user'
@@ -14,7 +14,7 @@ export function App() {
     <RouterProvider fallback={<NotFound />}>
       <Route path="/" component={<Layout />}>
         <Route component={<Dashboard />} />
-        <ReportsRoute path="/reports" component={<h1>Reports</h1>} />
+        <ReportsRoute path="/reports" component={<Reports />} />
         <Route path="/accounts" component={<Accounts />}>
           <Route path="/users" component={<Users />} />
           <Route path="/users/:userId" component={<User />} />

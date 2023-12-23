@@ -4,19 +4,18 @@ import styles from './send-button.module.css'
 
 export function SendButton({
   ariaLabel,
-  onClick,
+  isSubmitting,
 }: {
   ariaLabel: string
-  onClick: () => void
+  isSubmitting?: boolean
 }) {
   return (
-    <button
-      aria-label={ariaLabel}
-      className={styles.button}
-      onClick={onClick}
-      type="button"
-    >
-      <img src={sendIcon} alt={ariaLabel} width="35" height="35" />
+    <button aria-label={ariaLabel} className={styles.button} type="submit">
+      {isSubmitting ? (
+        '...'
+      ) : (
+        <img src={sendIcon} alt={ariaLabel} width="25" height="25" />
+      )}
     </button>
   )
 }

@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Playfair+Display:wght@500&display=swap');
 
 :root {
-  --primary-color: #FF2D82;
-  --dark-color: #212121;
+  --primary-color: #ff2d82;
+  --bg-color: #242529;
+  --dark-color: #111;
   --light-color: #f7f7f7;
   --small-screen: 600px;
   --medium-screen: 768px;
@@ -12,7 +13,7 @@
 }
 
 html {
-  background-color: var(--light-color);
-  color: var(--dark-color);
+  background-color: var(--bg-color);
+  color: var(--light-color);
   font-family: 'IBM Plex Sans', sans-serif;
 }

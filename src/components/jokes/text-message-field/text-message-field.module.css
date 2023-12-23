@@ -1,0 +1,15 @@
+.container {
+  border-radius: 7px;
+  border: 1px solid var(--light-color);
+  width: 100%;
+}
+
+.input {
+  margin: 0;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 7px 16px;
+  width: 100%;
+  color: var(--light-color);
+}

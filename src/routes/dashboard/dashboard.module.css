@@ -32,11 +32,15 @@
   align-items: center;
 }
 
+.columnEnd {
+  justify-content: end;
+}
+
 .imageContainer {
   display: flex;
   height: 100%;
   flex-direction: column;
-    justify-content: end;
+  justify-content: end;
 }
 
 @media only screen and (min-width: 768px) {

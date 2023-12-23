@@ -1,0 +1,15 @@
+.container {
+  padding: 7px 16px;
+  border-radius: 7px;
+  color: var(--light-color);
+}
+
+.user {
+  background-color: var(--primary-color);
+  align-self: end;
+}
+
+.bot {
+  background-color: var(--dark-color);
+  align-self: start;
+}

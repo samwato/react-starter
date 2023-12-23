@@ -11,6 +11,6 @@
 }
 
 .title a {
-  color: var(--dark-color);
+  color: var(--light-color);
   text-decoration: none;
 }

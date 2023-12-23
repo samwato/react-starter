@@ -38,7 +38,7 @@ export type FetchAction<TData> =
 export type FetchDispatch<TData> = React.Dispatch<FetchAction<TData>>
 
 export type UseFetchResponse<TData> = FetchState<TData> & {
-  runFetch: () => Promise<void>
+  runFetch: () => Promise<TData | undefined>
 }
 
 export type UseFetchOptions = {

@@ -14,10 +14,10 @@
 .menu_item a,
 .menu_item a:link,
 .menu_item a:visited {
-  color: var(--dark-color);
+  color: var(--light-color);
 }
 
 .menu_item a:hover,
 .menu_item a:active {
-  color: #333;
+  color: var(--primary-color);
 }

@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useFetch } from '@/lib/fetch'
 import styles from './jokes.module.css'
 import { SendButton } from '@/components/jokes/send-button'
+import { TextMessage } from '@/components/jokes/text-message'
+import { TextMessageField } from '@/components/jokes/text-message-field'
 
 interface JokeData {
   id: string
@@ -10,56 +12,71 @@ interface JokeData {
   status: number
 }
 
-export function Jokes() {
-  const [autoFetch, setAutoFetch] = useState<boolean>(false)
+interface ChatMessage {
+  id: string
+  message: string
+  sender: 'user' | 'bot'
+}
 
-  const { data, error, status, runFetch } = useFetch<JokeData>(
+export function Jokes() {
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
+  const sentMessageCount = chatMessages.filter(
+    ({ sender }) => sender === 'user',
+  ).length
+
+  const { status, runFetch } = useFetch<JokeData>(
     'https://icanhazdadjoke.com/',
     {
       headers: {
         Accept: 'application/json',
       },
-      fetchOnMount: autoFetch,
     },
   )
 
-  let content = null
+  async function handleSendMessage(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
 
-  switch (status) {
-    case 'idle':
-      content = null
-      break
-    case 'pending':
-      content = <p>Loading ...</p>
-      break
-    case 'rejected':
-      content = <p>{error}</p>
-      break
-    case 'resolved':
-      content = <p>{data.joke}</p>
-      break
+    const sendMessage = new FormData(event.currentTarget).get('message')
+
+    if (sendMessage && typeof sendMessage === 'string') {
+      setChatMessages((messages) => [
+        {
+          id: `${messages.length}:${sendMessage}`,
+          message: sendMessage,
+          sender: 'user',
+        },
+        ...messages,
+      ])
+    }
+
+    const resData = await runFetch()
+
+    if (resData) {
+      setChatMessages((messages) => [
+        {
+          id: `${messages.length}:${resData.joke}`,
+          message: resData.joke,
+          sender: 'bot',
+        },
+        ...messages,
+      ])
+    }
   }
 
   return (
-    <div>
-      <SendButton ariaLabel="Retch A Joke" onClick={() => {}} />
-      <h3 className={styles.tagline}>Tell me a Joke!</h3>
-
-      <div className={styles.joke}>{content}</div>
-
-      <div className={styles.actionsContainer}>
-        <button className={styles.button} type="button" onClick={runFetch}>
-          New Joke
-        </button>
-
-        <label className={styles.checkbox}>
-          Auto Fetch
-          <input
-            type="checkbox"
-            onChange={(event) => setAutoFetch(event.target.checked)}
-          />
-        </label>
+    <div className={styles.jokes_container}>
+      <div className={styles.chat_container}>
+        {chatMessages.map((chatMessage) => (
+          <TextMessage key={chatMessage.id} {...chatMessage} />
+        ))}
       </div>
+      <form className={styles.send_container} onSubmit={handleSendMessage}>
+        <TextMessageField sentMessageCount={sentMessageCount} />
+        <SendButton
+          ariaLabel="Fetch A Joke"
+          isSubmitting={status === 'pending'}
+        />
+      </form>
     </div>
   )
 }
