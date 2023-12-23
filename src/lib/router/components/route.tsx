@@ -3,8 +3,8 @@ import { useLocation } from '../context/router'
 import { RouteProvider, useRoute } from '../context/route'
 import { resolvePaths } from '../utils/resolve-paths'
 import type { RouteProps } from '../types'
-import { isExactMatch, isPartialMatch } from '@/lib/router/utils/is-match'
-import { getParams } from '@/lib/router/utils/get-params'
+import { isExactMatch, isPartialMatch } from '../utils/is-match'
+import { getParams } from '../utils/get-params'
 
 export function Route({ children, component, path }: RouteProps) {
   const location = useLocation()

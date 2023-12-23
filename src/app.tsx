@@ -18,7 +18,7 @@ export function App() {
         <Route path="/accounts" component={<Accounts />}>
           <Route path="/users" component={<Users />} />
           <Route path="/users/:userId" component={<User />} />
-          <Route path="/users/:userId/:postId" component={<Post />} />
+          <Route path="/users/:userId/posts/:postId" component={<Post />} />
         </Route>
       </Route>
     </RouterProvider>

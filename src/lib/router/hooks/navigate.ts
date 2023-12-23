@@ -1,12 +1,15 @@
-import { useRouter, setRouteLocation } from '../context/router'
+import { useRouter, setRouteLocation, useLocation } from '../context/router'
+import { resolvePaths } from '@/lib/router/utils/resolve-paths'
 
 export function useNavigate() {
   const [, dispatch] = useRouter()
+  const location = useLocation()
 
   return (path: string) => {
-    if (window.location.pathname !== path) {
-      setRouteLocation(dispatch, path)
-      window.history.pushState({}, '', path)
-    }
+    if (window.location.pathname === path) return
+
+    const url = path.startsWith('/') ? path : resolvePaths(location, path)
+    setRouteLocation(dispatch, url)
+    window.history.pushState({}, '', url)
   }
 }

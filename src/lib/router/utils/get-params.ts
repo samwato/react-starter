@@ -1,21 +1,21 @@
 import type { RouteParams } from '../types'
+import { getSegmentedPaths } from './get-segmented-paths'
 
 export function getParams(
   routePath: string,
   location: string,
   initialParams: RouteParams = {},
 ): RouteParams {
-  const routePathParts = routePath.split('/').slice(1)
-  const locationParts = location.split('/').slice(1)
+  const routePathSegments = getSegmentedPaths(routePath)
+  const locationSegments = getSegmentedPaths(location)
 
-  return routePathParts.reduce((params, routePathPart, index) => {
+  return routePathSegments.reduce((params, routePathSegment, index) => {
     if (
-      !!routePathPart &&
-      routePathPart[0] === ':' &&
-      locationParts[index] &&
-      routePathPart.slice(1)
+      routePathSegment[0] === ':' &&
+      locationSegments[index] &&
+      routePathSegment.slice(1)
     ) {
-      params[routePathPart.slice(1)] = locationParts[index]
+      params[routePathSegment.slice(1)] = locationSegments[index]
     }
     return params
   }, initialParams)

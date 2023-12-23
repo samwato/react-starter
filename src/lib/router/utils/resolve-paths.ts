@@ -1,16 +1,16 @@
+import { getSegmentedPaths } from './get-segmented-paths'
+
 export function resolvePaths(...paths: string[]): string {
   if (paths.length < 1) {
     throw new Error('resolvePaths must have at least 1 path!')
   }
 
   return paths.reduce((resolvedPath, path) => {
-    const normalizedPaths = path.split('/').slice(1)
+    const segmentedPaths = getSegmentedPaths(path)
 
-    normalizedPaths.forEach((normalizedPath) => {
-      if (normalizedPath) {
-        if (resolvedPath !== '/') resolvedPath += '/'
-        resolvedPath += normalizedPath
-      }
+    segmentedPaths.forEach((segmentedPath) => {
+      if (resolvedPath !== '/') resolvedPath += '/'
+      resolvedPath += segmentedPath
     })
     return resolvedPath
   }, '/')

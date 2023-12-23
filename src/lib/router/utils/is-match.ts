@@ -1,26 +1,28 @@
+import { getSegmentedPaths } from './get-segmented-paths'
+
 export function isPartialMatch(routePath: string, location: string): boolean {
   if (routePath === '/') return true
 
-  const routePathParts = routePath.split('/').slice(1)
-  const locationParts = location.split('/').slice(1)
+  const routePathSegments = getSegmentedPaths(routePath)
+  const locationSegments = getSegmentedPaths(location)
 
-  return routePathParts.every((routePathPart, index) => {
-    if (routePathPart[0] !== ':') {
-      return routePathPart === locationParts[index]
+  return routePathSegments.every((routePathSegment, index) => {
+    if (routePathSegment[0] !== ':') {
+      return routePathSegment === locationSegments[index]
     }
-    return !!locationParts[index]
+    return !!locationSegments[index]
   })
 }
 
 export function isExactMatch(routePath: string, location: string): boolean {
-  const routePathParts = routePath.split('/').slice(1)
-  const locationParts = location.split('/').slice(1)
+  const routePathSegments = getSegmentedPaths(routePath)
+  const locationSegments = getSegmentedPaths(location)
 
-  if (routePathParts.length !== locationParts.length) return false
+  if (routePathSegments.length !== locationSegments.length) return false
 
-  return routePathParts.every((routePathPart, index) => {
-    if (routePathPart[0] !== ':') {
-      return routePathPart === locationParts[index]
+  return routePathSegments.every((routePathSegment, index) => {
+    if (routePathSegment[0] !== ':') {
+      return routePathSegment === locationSegments[index]
     }
     return true
   })

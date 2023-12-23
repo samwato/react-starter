@@ -7,7 +7,7 @@ export function User() {
   return (
     <div>
       <h1>User: {userId}</h1>
-      <Link to={`/accounts/users/${userId}/1`}>Post 1</Link>
+      <Link to="posts/post-1">Post 1</Link>
     </div>
   )
 }
