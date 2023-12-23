@@ -1,18 +1,6 @@
 import * as React from 'react'
-import { isValidElement } from 'react'
 import { resolvePaths } from './resolve-paths'
-import type { RouteComponent } from '../types'
-
-export function isRouteComponent(
-  node: React.ReactNode,
-): node is RouteComponent {
-  return (
-    !!node &&
-    isValidElement(node) &&
-    typeof node.type !== 'string' &&
-    node.type.prototype.isRouteComponent
-  )
-}
+import { isRouteComponent } from './is-route-component'
 
 export function getRoutesFromComponents(
   node: React.ReactNode,

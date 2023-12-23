@@ -9,7 +9,7 @@ import {
 } from '../types'
 import { RouteProvider } from '../context/route'
 import { getRoutesFromComponents } from '../utils/get-routes'
-import { isExactMatch } from '../utils/is-match'
+import { isExactMatch } from '../utils/is-exact-match'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
 

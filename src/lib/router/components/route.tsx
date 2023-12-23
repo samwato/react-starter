@@ -3,7 +3,8 @@ import { useLocation } from '../context/router'
 import { RouteProvider, useRoute } from '../context/route'
 import { resolvePaths } from '../utils/resolve-paths'
 import type { RouteProps } from '../types'
-import { isExactMatch, isPartialMatch } from '../utils/is-match'
+import { isExactMatch } from '../utils/is-exact-match'
+import { isPartialMatch } from '../utils/is-partial-match'
 import { getParams } from '../utils/get-params'
 
 export function Route({ children, component, path }: RouteProps) {
@@ -28,5 +29,3 @@ export function Route({ children, component, path }: RouteProps) {
     </RouteProvider>
   )
 }
-
-Route.prototype.isRouteComponent = true
