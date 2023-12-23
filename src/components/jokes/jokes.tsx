@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { useState } from 'react'
 import { useFetch } from '@/lib/fetch'
-import styles from './joke.module.css'
+import styles from './jokes.module.css'
+import { SendButton } from '@/components/jokes/send-button'
 
 interface JokeData {
   id: string
@@ -9,7 +10,7 @@ interface JokeData {
   status: number
 }
 
-export function Joke() {
+export function Jokes() {
   const [autoFetch, setAutoFetch] = useState<boolean>(false)
 
   const { data, error, status, runFetch } = useFetch<JokeData>(
@@ -41,6 +42,7 @@ export function Joke() {
 
   return (
     <div>
+      <SendButton ariaLabel="Retch A Joke" onClick={() => {}} />
       <h3 className={styles.tagline}>Tell me a Joke!</h3>
 
       <div className={styles.joke}>{content}</div>

@@ -96,9 +96,6 @@ Cons:
 
 Router:
 - [ ] Router with query and search params
-- [ ] Link forward ref
-- [ ] Link support relative to
-- [ ] Route component just looks at path prop
 
 - [ ] react-hook-form alternative
 - [ ] Add tests for lib extras

@@ -8,7 +8,7 @@ export function Layout() {
   const outlet = useOutlet()
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <header className={styles.header}>
         <div>
           <Logo />

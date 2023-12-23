@@ -11,10 +11,6 @@
 }
 
 .title a {
-  color: var(--primary-color);
+  color: var(--dark-color);
   text-decoration: none;
-}
-
-.logo {
-  color: var(--primary-color);
 }
