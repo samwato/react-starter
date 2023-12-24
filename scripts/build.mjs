@@ -2,12 +2,14 @@
 
 import * as esbuild from 'esbuild'
 import { htmlPlugin } from './esbuild-html-plugin.mjs'
+import { getPublicEnvs } from './common.mjs'
 
 let result = await esbuild.build({
   assetNames: 'assets/[name]-[hash]',
   bundle: true,
   define: {
     IS_DEV: 'false',
+    ...getPublicEnvs(),
   },
   chunkNames: '[name].chunk.[hash]',
   entryNames: '[name].bundle.[hash]',
