@@ -1,3 +1,4 @@
+/** @type {import('jest').Config} */
 const config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -84,6 +85,7 @@ const config = {
   moduleNameMapper: {
     '\\.(css)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@lib(.*)$': '<rootDir>/lib/$1',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

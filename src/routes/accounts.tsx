@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useOutlet } from '@/lib/router'
+import { useOutlet } from '@lib/router'
 
 export function Accounts() {
   const outlet = useOutlet()

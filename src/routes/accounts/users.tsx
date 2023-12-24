@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link } from '@/lib/router'
+import { Link } from '@lib/router'
 
 const users = [
   { id: 'user-1', name: 'User 1' },

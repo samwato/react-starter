@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useParams } from '@/lib/router/context/route'
+import { useParams } from '@lib/router/context/route'
 
 export function Post() {
   const { postId, userId } = useParams()

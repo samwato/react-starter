@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useParams, Link } from '@/lib/router'
+import { useParams, Link } from '@lib/router'
 
 export function User() {
   const { userId } = useParams()

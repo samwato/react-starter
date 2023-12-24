@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link, useOutlet } from '@/lib/router'
+import { Link, useOutlet } from '@lib/router'
 import { MenuList, MenuItem } from '@/components/layout/menu'
 import { Logo } from '@/components/layout/logo'
 import styles from '@/components/layout/layout.module.css'

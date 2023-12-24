@@ -4,7 +4,7 @@ import type {
   FetchState,
   UseFetchOptions,
   UseFetchResponse,
-} from './types'
+} from '../types'
 
 function fetchReducer<TData>(
   _: FetchState<TData>,

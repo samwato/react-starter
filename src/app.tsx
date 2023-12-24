@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Route, RouterProvider } from '@/lib/router'
+import { Route, RouterProvider } from '@lib/router'
 import { Layout } from '@/components/layout'
 import { Dashboard } from '@/routes/dashboard'
 import { ReportsRoute, Reports } from '@/routes/reports'

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { type ReactNode, type ReactElement } from 'react'
 import { act, render, type RenderOptions } from '@testing-library/react'
 import * as userEvent from '@testing-library/user-event'
-import { RouterProvider } from '@/lib/router'
+import { RouterProvider } from '@lib/router'
 
 interface TestProvidersProps {
   children: ReactNode

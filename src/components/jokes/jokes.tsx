@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { useFetch } from '@/lib/fetch'
+import { useFetch } from '@lib/fetch'
 import styles from './jokes.module.css'
 import { SendButton } from '@/components/jokes/send-button'
 import { TextMessage } from '@/components/jokes/text-message'
