@@ -4,17 +4,8 @@ import type { RouteProviderProps, RouteContextValue } from '../types'
 
 const RouteContext = createContext<RouteContextValue | undefined>(undefined)
 
-export function RouteProvider({
-  children,
-  outlet,
-  params,
-  path,
-}: RouteProviderProps) {
-  return (
-    <RouteContext.Provider value={{ outlet, params, path }}>
-      {children}
-    </RouteContext.Provider>
-  )
+export function RouteProvider({ children, ...value }: RouteProviderProps) {
+  return <RouteContext.Provider value={value}>{children}</RouteContext.Provider>
 }
 
 // Internal Hooks

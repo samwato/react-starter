@@ -1,16 +1,10 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { useFetch } from '@lib/fetch'
 import styles from './jokes.module.css'
 import { SendButton } from '@/components/jokes/send-button'
 import { TextMessage } from '@/components/jokes/text-message'
 import { TextMessageField } from '@/components/jokes/text-message-field'
-
-interface JokeData {
-  id: string
-  joke: string
-  status: number
-}
+import { useJokes } from '@/api/jokes'
 
 interface ChatMessage {
   id: string
@@ -23,15 +17,9 @@ export function Jokes() {
   const sentMessageCount = chatMessages.filter(
     ({ sender }) => sender === 'user',
   ).length
+  const waitingForBot = chatMessages[0]?.sender === 'user'
 
-  const { status, runFetch } = useFetch<JokeData>(
-    'https://icanhazdadjoke.com/',
-    {
-      headers: {
-        Accept: 'application/json',
-      },
-    },
-  )
+  const { status, runFetch } = useJokes()
 
   async function handleSendMessage(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -71,7 +59,10 @@ export function Jokes() {
         ))}
       </div>
       <form className={styles.send_container} onSubmit={handleSendMessage}>
-        <TextMessageField sentMessageCount={sentMessageCount} />
+        <TextMessageField
+          waitingForBot={waitingForBot}
+          sentMessageCount={sentMessageCount}
+        />
         <SendButton
           ariaLabel="Fetch A Joke"
           isSubmitting={status === 'pending'}

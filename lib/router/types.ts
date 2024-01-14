@@ -44,6 +44,7 @@ export type RouteComponent = React.ReactElement<
 export type RouteParams = Record<string, string>
 
 export type RouteContextValue = {
+  location: string
   outlet?: React.ReactNode
   params: RouteParams
   path: string
@@ -51,7 +52,4 @@ export type RouteContextValue = {
 
 export type RouteProviderProps = {
   children: React.ReactNode
-  outlet?: React.ReactNode
-  params: RouteParams
-  path: string
-}
+} & RouteContextValue

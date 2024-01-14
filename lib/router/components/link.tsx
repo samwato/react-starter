@@ -1,15 +1,17 @@
 import * as React from 'react'
 import { useNavigate } from '../hooks/navigate'
 import type { LinkProps } from '../types'
-import { useAbsoluteUrl } from '../hooks/absolute-url'
+import { getAbsoluteUrl } from '../hooks/absolute-url'
+import { useRoute } from '../context/route'
 
 export const Link = React.forwardRef(function Link(
   { to, children, ...props }: LinkProps,
   ref: React.ForwardedRef<HTMLAnchorElement | null>,
 ) {
   const navigate = useNavigate()
+  const { location: routeLocation } = useRoute()
 
-  const href = useAbsoluteUrl(to)
+  const href = getAbsoluteUrl(routeLocation, to)
 
   function handleClick(event: React.MouseEvent) {
     event.preventDefault()

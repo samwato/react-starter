@@ -3,11 +3,11 @@ import { getSegmentedPaths } from './get-segmented-paths'
 
 export function getParams(
   routePath: string,
-  location: string,
+  routerLocation: string,
   initialParams: RouteParams = {},
 ): RouteParams {
   const routePathSegments = getSegmentedPaths(routePath)
-  const locationSegments = getSegmentedPaths(location)
+  const locationSegments = getSegmentedPaths(routerLocation)
 
   return routePathSegments.reduce((params, routePathSegment, index) => {
     if (

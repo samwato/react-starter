@@ -1,6 +1,6 @@
 export { Link } from './components/link'
 export { Route } from './components/route'
 export { useNavigate } from './hooks/navigate'
-export { useRouter, RouterProvider, useLocation } from './context/router'
+export { useRouter, RouterProvider } from './context/router'
 export { useOutlet, useParams } from './context/route'
 export type { RouteProps } from './types'

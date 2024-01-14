@@ -10,9 +10,9 @@ To get started run the init script
 npm run init
 ```
 
-## Develop
+## Development
 
-To run the app in dev mode, run:
+To run the app in development mode, run:
 
 ```
 npm run dev
@@ -30,26 +30,27 @@ npm run prod
 
 This starter app includes the following features:
 
-| **Features**                          |     |
-| ------------------------------------- | --- |
-| **Bundler**:                          |     |
-| - Esbuild                             | ✅  |
-| - Production Build                    | ✅  |
-| - Typescript                          | ✅  |
-| - Image Loaders (.png, .jpg and .svg) | ✅  |
-| **Styling:**                          |     |
-| - Normalize CSS                       | ✅  |
-| - CSS Modules                         | ✅  |
-| **Linting:**                          |     |
-| - Eslint                              | ✅  |
-| **Formatting:**                       |     |
-| - Prettier                            | ✅  |
-| **Development Workflow:**             |     |
-| - Live Reload                         | ✅  |
-| - Pre-commit Hook                     | ✅  |
-| **Testing:**                          |     |
-| - Jest                                | ✅  |
-| - React Testing Library               | ✅  |
+| **Features**                               |     |
+| ------------------------------------------ | --- |
+| **Bundler**:                               |     |
+| - Esbuild                                  | ✅  |
+| - Production Build                         | ✅  |
+| - Typescript                               | ✅  |
+| - Image Loaders (.png, .jpg and .svg)      | ✅  |
+| - Public env vars starting with "PUBLIC\_" | ✅  |
+| **Styling:**                               |     |
+| - Normalize CSS                            | ✅  |
+| - CSS Modules                              | ✅  |
+| **Linting:**                               |     |
+| - Eslint                                   | ✅  |
+| **Formatting:**                            |     |
+| - Prettier                                 | ✅  |
+| **Development Workflow:**                  |     |
+| - Live Reload                              | ✅  |
+| - Pre-commit Hook                          | ✅  |
+| **Testing:**                               |     |
+| - Jest                                     | ✅  |
+| - React Testing Library                    | ✅  |
 
 ## Library Extras
 

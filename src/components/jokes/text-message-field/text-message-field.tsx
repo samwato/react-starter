@@ -19,15 +19,19 @@ function getRandomMessage(messages: string[]) {
 
 export function TextMessageField({
   sentMessageCount,
+  waitingForBot,
 }: {
   sentMessageCount: number
+  waitingForBot: boolean
 }) {
   const message = useMemo(
     () =>
       sentMessageCount === 0
         ? firstMessage
-        : getRandomMessage(availableMessages),
-    [sentMessageCount],
+        : waitingForBot
+          ? ''
+          : getRandomMessage(availableMessages),
+    [sentMessageCount, waitingForBot],
   )
 
   return (

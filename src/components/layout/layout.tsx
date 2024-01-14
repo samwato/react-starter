@@ -19,10 +19,10 @@ export function Layout() {
               <Link to="/">Dashboard</Link>
             </MenuItem>
             <MenuItem>
-              <Link to="/reports">Reports</Link>
+              <Link to="/artists/bands">Artists</Link>
             </MenuItem>
             <MenuItem>
-              <Link to="/accounts/users">Users</Link>
+              <Link to="/reports">Reports</Link>
             </MenuItem>
             <MenuItem>
               <Link to="/whoops">404</Link>

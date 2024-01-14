@@ -1,14 +1,18 @@
-import { useRouter, setRouteLocation, useLocation } from '../context/router'
-import { resolvePaths } from '../utils/resolve-paths'
+import { useRouter, setRouteLocation } from '../context/router'
+import { getAbsoluteUrl } from '../hooks/absolute-url'
+import { useRoute } from '../context/route'
 
 export function useNavigate() {
-  const [, dispatch] = useRouter()
-  const location = useLocation()
+  const [{ location: routerLocation }, dispatch] = useRouter()
+  const { location: routeLocation } = useRoute()
 
   return (path: string) => {
-    if (window.location.pathname === path) return
+    // Resolve to absolute path
+    const url = getAbsoluteUrl(routeLocation, path)
 
-    const url = path.startsWith('/') ? path : resolvePaths(location, path)
+    // Already on location
+    if (url === routerLocation) return
+
     setRouteLocation(dispatch, url)
     window.history.pushState({}, '', url)
   }

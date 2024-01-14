@@ -1,8 +1,5 @@
-import { useLocation } from '../context/router'
 import { resolvePaths } from '../utils/resolve-paths'
 
-export function useAbsoluteUrl(path: string): string {
-  const location = useLocation()
-
-  return resolvePaths(location, path)
+export function getAbsoluteUrl(routeLocation: string, path: string): string {
+  return path.startsWith('/') ? path : resolvePaths(routeLocation, path)
 }

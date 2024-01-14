@@ -5,7 +5,6 @@ import {
   RouterReducer,
   RouterDispatch,
   RouterContextValue,
-  RouterState,
 } from '../types'
 import { RouteProvider } from '../context/route'
 import { getRoutesFromComponents } from '../utils/get-routes'
@@ -80,20 +79,10 @@ export function RouterProvider({
 
   return (
     <RouterContext.Provider value={[state, dispatch]}>
-      <RouteProvider params={{}} path={basePath}>
+      <RouteProvider location={basePath} params={{}} path={basePath}>
         {children}
       </RouteProvider>
       {noRouteMatches && fallback ? fallback : null}
     </RouterContext.Provider>
   )
-}
-
-export const useLocation = (): RouterState['location'] => {
-  const routerContext = useContext(RouterContext)
-
-  if (!routerContext) {
-    throw new Error('useLocation must be wrapped with RouterContext')
-  }
-
-  return routerContext[0].location
 }
