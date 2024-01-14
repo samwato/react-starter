@@ -12,16 +12,6 @@ import { isExactMatch } from '../utils/is-exact-match'
 
 const RouterContext = createContext<RouterContextValue | undefined>(undefined)
 
-export const useRouter = (): RouterContextValue => {
-  const routerContext = useContext(RouterContext)
-
-  if (!routerContext) {
-    throw new Error('useRouter must be wrapped with RouterContext')
-  }
-
-  return routerContext
-}
-
 const routerReducer: RouterReducer = (state, action) => {
   switch (action.type) {
     case 'set':
@@ -85,4 +75,26 @@ export function RouterProvider({
       {noRouteMatches && fallback ? fallback : null}
     </RouterContext.Provider>
   )
+}
+
+// Internal Hooks
+export const useRouter = (): RouterContextValue => {
+  const routerContext = useContext(RouterContext)
+
+  if (!routerContext) {
+    throw new Error('useRouter must be wrapped with RouterContext')
+  }
+
+  return routerContext
+}
+
+// Consumer Hooks
+export const useLocation = () => {
+  const routerContext = useContext(RouterContext)
+
+  if (!routerContext) {
+    throw new Error('useLocation must be wrapped with RouterContext')
+  }
+
+  return routerContext[0].location
 }

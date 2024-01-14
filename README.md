@@ -101,6 +101,7 @@ Router:
 
 - [ ] react-hook-form alternative
 - [ ] Add tests for lib extras
+- [ ] Upgrade packages
 - [ ] Language support
 - [ ] UI Library support, theming, accessibility component, etc.
 - [ ] Any helper hooks, locales, media queries, etc.
