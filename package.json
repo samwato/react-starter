@@ -22,7 +22,8 @@
     "format": "prettier . --check",
     "type": "tsc",
     "pretest": "npm run type",
-    "test": "jest"
+    "test": "jest",
+    "update_packages": "./scripts/update_packages.sh"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
